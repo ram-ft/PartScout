@@ -18,6 +18,21 @@ Production:
 
 Open http://127.0.0.1:8787
 
+## Deploy on Render
+
+This app needs a Node host. GitHub Pages only serves static files and cannot run the Hono API
+(search, images, SerpAPI direct links, AI), so it shows a blank page for this repo. The included
+`render.yaml` deploys the full app.
+
+1. Push to GitHub, then in Render choose **New → Blueprint** and select this repo.
+2. Enter `SERPAPI_KEY` and `AI_API_KEY` when Render asks; they stay server-side.
+3. Deploy and open the Render URL (`https://<service>.onrender.com`).
+
+Manual setup: a Web Service with build command `npm ci --include=dev && npm run build`, start
+command `npm start`, and env vars `HOST=0.0.0.0`, `SERPAPI_KEY`, `AI_API_KEY`. Free instances
+sleep after inactivity, so the first request can take about a minute. `.env` is gitignored and is
+never uploaded; set the keys in Render. Disable GitHub Pages for this repo if it is enabled.
+
 ## Data
 
 PartScout only shows real product listings. There is no sample or fallback catalogue.

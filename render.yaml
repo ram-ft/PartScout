@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: partscout
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/sources
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: SERPAPI_KEY
+        sync: false
+      - key: AI_API_KEY
+        sync: false
